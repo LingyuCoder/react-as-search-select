@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f6168bc1a3a426dbd538"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "490dd77fb597bce38c38"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -7973,11 +7973,34 @@
 
 	var _srcIndex2 = _interopRequireDefault(_srcIndex);
 
-	var config = {};
+	var config = {
+	  data: [{
+	    value: '1',
+	    text: 'tianxiang.wly',
+	    index: 'T'
+	  }, {
+	    value: '2',
+	    text: 'zhuofeng.ls',
+	    index: 'Z'
+	  }, {
+	    value: '3',
+	    text: 'yicheng.xrt',
+	    index: 'Y'
+	  }],
+	  title: 'some title',
+	  value: '1',
+	  name: 'bibibababong',
+	  onChange: function onChange(value) {
+	    console.log(value);
+	  },
+	  onSearchChange: function onSearchChange(value) {
+	    console.log(value);
+	  }
+	};
 
 	_react2['default'].render(_react2['default'].createElement(_srcIndex2['default'], config), document.getElementById('demo'));
 
-	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(227), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "demo.jsx" + ": " + err.message); } }); } } })(); }
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(229), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "demo.jsx" + ": " + err.message); } }); } } })(); }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)(module)))
 
 /***/ },
@@ -28779,12 +28802,12 @@
 
 	var _libComponent2 = _interopRequireDefault(_libComponent);
 
-	__webpack_require__(230);
+	__webpack_require__(234);
 
 	exports['default'] = _libComponent2['default'];
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(227), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } })(); }
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(229), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } })(); }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)(module)))
 
 /***/ },
@@ -28794,7 +28817,7 @@
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(217), RootInstanceProvider = __webpack_require__(215), ReactMount = __webpack_require__(125), React = __webpack_require__(59); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
 
 	Object.defineProperty(exports, '__esModule', {
-		value: true
+	  value: true
 	});
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -28811,43 +28834,511 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactMixin = __webpack_require__(227);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _reactAsEventMixin = __webpack_require__(233);
+
+	var _reactAsEventMixin2 = _interopRequireDefault(_reactAsEventMixin);
+
 	var Component = (function (_React$Component) {
-		function Component() {
-			_classCallCheck(this, Component);
+	  function Component(props) {
+	    _classCallCheck(this, Component);
 
-			_get(Object.getPrototypeOf(Component.prototype), 'constructor', this).call(this);
-		}
+	    _get(Object.getPrototypeOf(Component.prototype), 'constructor', this).call(this);
+	    this.state = {
+	      search: props.search,
+	      value: props.value
+	    };
+	    this._handleChange = this._handleChange.bind(this);
+	    this._handleSearchChange = this._handleSearchChange.bind(this);
+	    this._matchSearch = this._matchSearch.bind(this);
+	  }
 
-		_inherits(Component, _React$Component);
+	  _inherits(Component, _React$Component);
 
-		_createClass(Component, [{
-			key: 'render',
-			value: function render() {
-				return _react2['default'].createElement(
-					'div',
-					null,
-					'Hello React!'
-				);
-			}
-		}]);
+	  _createClass(Component, [{
+	    key: 'getValue',
+	    value: function getValue() {
+	      return this.state.value;
+	    }
+	  }, {
+	    key: 'setValue',
+	    value: function setValue(newValue) {
+	      this.setState({
+	        value: newValue
+	      });
+	      return this;
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var state = {};
+	      nextProps.value !== void 0 && (state.value = nextProps.value);
+	      nextProps.search !== void 0 && (state.search = nextProps.search);
+	      this.setState(state);
+	    }
+	  }, {
+	    key: '_handleChange',
+	    value: function _handleChange(e) {
+	      var data = this.props.data[parseInt(e.currentTarget.getAttribute('data-index'))];
+	      if (data.value === this.state.value) return;
+	      this.setState({
+	        value: data.value
+	      });
+	      this.fireAll('change', data);
+	    }
+	  }, {
+	    key: '_handleSearchChange',
+	    value: function _handleSearchChange(e) {
+	      var search = e.target.value || '';
+	      this.setState({
+	        search: search
+	      });
+	      this.fireAll('searchChange', search);
+	    }
+	  }, {
+	    key: '_matchSearch',
+	    value: function _matchSearch(item, search) {
+	      search = search || '';
+	      if (item.text.toString().toUpperCase().indexOf(search.trim().toUpperCase()) !== -1) return true;
+	      if (item.index && item.index.toString().toUpperCase().indexOf(search.toUpperCase()) !== -1) return true;
+	      return false;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this = this;
 
-		return Component;
+	      var needIndex = this.props.data.some(function (item) {
+	        return !!item.index;
+	      });
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'react-as-search-select', style: { maxHeight: this.props.height } },
+	        this.props.title && _react2['default'].createElement(
+	          'div',
+	          { className: 'search-title' },
+	          this.props.title
+	        ),
+	        this.props.name && _react2['default'].createElement('input', { type: 'hidden', name: this.props.name, value: this.state.value }),
+	        _react2['default'].createElement('input', { placeholder: this.props.placeholder, className: 'search-text', value: this.state.search, onChange: this._handleSearchChange }),
+	        _react2['default'].createElement(
+	          'ul',
+	          { className: 'search-list' },
+	          this.props.data.map(function (item, index) {
+	            return _this._matchSearch(item, _this.state.search) && _react2['default'].createElement(
+	              'li',
+	              { className: 'search-item' + (item.value === _this.state.value ? ' selected' : ''), 'data-index': index, onClick: _this._handleChange },
+	              needIndex && _react2['default'].createElement(
+	                'span',
+	                { className: 'search-item-index' + (item.index ? '' : ' empty') },
+	                item.index
+	              ),
+	              item.text
+	            );
+	          })
+	        )
+	      );
+	    }
+	  }], [{
+	    key: 'propTypes',
+	    value: {
+	      name: _react2['default'].PropTypes.string,
+	      value: _react2['default'].PropTypes.string,
+	      search: _react2['default'].PropTypes.string,
+	      data: _react2['default'].PropTypes.array(_react2['default'].PropTypes.object),
+	      onChange: _react2['default'].PropTypes.func,
+	      onSearchChange: _react2['default'].PropTypes.func,
+	      placeholder: _react2['default'].PropTypes.string,
+	      height: _react2['default'].PropTypes.number
+	    },
+	    enumerable: true
+	  }, {
+	    key: 'defaultProps',
+	    value: {
+	      value: '',
+	      search: '',
+	      data: [],
+	      onChange: function onChange() {},
+	      onSearchChange: function onSearchChange() {},
+	      placeholder: '请输入过滤条件',
+	      height: 400
+	    },
+	    enumerable: true
+	  }]);
+
+	  return Component;
 	})(_react2['default'].Component);
+
+	(0, _reactMixin2['default'])(Component.prototype, _reactAsEventMixin2['default']);
 
 	exports['default'] = Component;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(227), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Component.jsx" + ": " + err.message); } }); } } })(); }
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(229), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Component.jsx" + ": " + err.message); } }); } } })(); }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)(module)))
 
 /***/ },
 /* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(217), RootInstanceProvider = __webpack_require__(215), ReactMount = __webpack_require__(125), React = __webpack_require__(59); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	var mixin = __webpack_require__(228);
+	var assign = __webpack_require__(232);
+
+	var mixinProto = mixin({
+	  // lifecycle stuff is as you'd expect
+	  componentDidMount: mixin.MANY,
+	  componentWillMount: mixin.MANY,
+	  componentWillReceiveProps: mixin.MANY,
+	  shouldComponentUpdate: mixin.ONCE,
+	  componentWillUpdate: mixin.MANY,
+	  componentDidUpdate: mixin.MANY,
+	  componentWillUnmount: mixin.MANY,
+	  getChildContext: mixin.MANY_MERGED
+	});
+
+	function setDefaultProps(reactMixin) {
+	  var getDefaultProps = reactMixin.getDefaultProps;
+
+	  if (getDefaultProps) {
+	    reactMixin.defaultProps = getDefaultProps();
+
+	    delete reactMixin.getDefaultProps;
+	  }
+	}
+
+	function setInitialState(reactMixin) {
+	  var getInitialState = reactMixin.getInitialState;
+	  var componentWillMount = reactMixin.componentWillMount;
+
+	  function applyInitialState(instance) {
+	    var state = instance.state || {};
+	    assign(state, getInitialState.call(instance));
+	    instance.state = state;
+	  }
+
+	  if (getInitialState) {
+	    if (!componentWillMount) {
+	      reactMixin.componentWillMount = function () {
+	        applyInitialState(this);
+	      };
+	    } else {
+	      reactMixin.componentWillMount = function () {
+	        applyInitialState(this);
+	        componentWillMount.call(this);
+	      };
+	    }
+
+	    delete reactMixin.getInitialState;
+	  }
+	}
+
+	function mixinClass(reactClass, reactMixin) {
+	  setDefaultProps(reactMixin);
+	  setInitialState(reactMixin);
+
+	  var prototypeMethods = {};
+	  var staticProps = {};
+
+	  Object.keys(reactMixin).forEach(function (key) {
+	    if (key === 'mixins') {
+	      return; // Handled below to ensure proper order regardless of property iteration order
+	    }
+	    if (key === 'statics') {
+	      return; // gets special handling
+	    } else if (typeof reactMixin[key] === 'function') {
+	      prototypeMethods[key] = reactMixin[key];
+	    } else {
+	      staticProps[key] = reactMixin[key];
+	    }
+	  });
+
+	  mixinProto(reactClass.prototype, prototypeMethods);
+
+	  var mergePropTypes = function mergePropTypes(left, right, key) {
+	    if (!left) return right;
+	    if (!right) return left;
+
+	    var result = {};
+	    Object.keys(left).forEach(function (leftKey) {
+	      if (!right[leftKey]) {
+	        result[leftKey] = left[leftKey];
+	      }
+	    });
+
+	    Object.keys(right).forEach(function (rightKey) {
+	      if (left[rightKey]) {
+	        result[rightKey] = function checkBothContextTypes() {
+	          return right[rightKey].apply(this, arguments) && left[rightKey].apply(this, arguments);
+	        };
+	      } else {
+	        result[rightKey] = right[rightKey];
+	      }
+	    });
+
+	    return result;
+	  };
+
+	  mixin({
+	    childContextTypes: mergePropTypes,
+	    contextTypes: mergePropTypes,
+	    propTypes: mixin.MANY_MERGED_LOOSE,
+	    defaultProps: mixin.MANY_MERGED_LOOSE
+	  })(reactClass, staticProps);
+
+	  // statics is a special case because it merges directly onto the class
+	  if (reactMixin.statics) {
+	    Object.getOwnPropertyNames(reactMixin.statics).forEach(function (key) {
+	      var left = reactClass[key];
+	      var right = reactMixin.statics[key];
+
+	      if (left !== undefined && right !== undefined) {
+	        throw new TypeError('Cannot mixin statics because statics.' + key + ' and Component.' + key + ' are defined.');
+	      }
+
+	      reactClass[key] = left !== undefined ? left : right;
+	    });
+	  }
+
+	  // If more mixins are defined, they need to run. This emulate's react's behavior.
+	  // See behavior in code at:
+	  // https://github.com/facebook/react/blob/41aa3496aa632634f650edbe10d617799922d265/src/isomorphic/classic/class/ReactClass.js#L468
+	  // Note the .reverse(). In React, a fresh constructor is created, then all mixins are mixed in recursively,
+	  // then the actual spec is mixed in last.
+	  //
+	  // With ES6 classes, the properties are already there, so smart-mixin mixes functions (a, b) -> b()a(), which is
+	  // the opposite of how React does it. If we reverse this array, we basically do the whole logic in reverse,
+	  // which makes the result the same. See the test for more.
+	  // See also:
+	  // https://github.com/facebook/react/blob/41aa3496aa632634f650edbe10d617799922d265/src/isomorphic/classic/class/ReactClass.js#L853
+	  if (reactMixin.mixins) {
+	    reactMixin.mixins.reverse().forEach(mixinClass.bind(null, reactClass));
+	  }
+
+	  return reactClass;
+	}
+
+	module.exports = (function () {
+	  var reactMixin = mixinProto;
+
+	  reactMixin.onClass = function (reactClass, mixin) {
+	    return mixinClass(reactClass, mixin);
+	  };
+
+	  reactMixin.decorate = function (mixin) {
+	    return function (reactClass) {
+	      return reactMixin.onClass(reactClass, mixin);
+	    };
+	  };
+
+	  return reactMixin;
+	})();
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(229), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)(module)))
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(217), RootInstanceProvider = __webpack_require__(215), ReactMount = __webpack_require__(125), React = __webpack_require__(59); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	var objToStr = function objToStr(x) {
+	    return Object.prototype.toString.call(x);
+	};
+
+	var thrower = function thrower(error) {
+	    throw error;
+	};
+
+	var mixins = module.exports = function makeMixinFunction(rules, _opts) {
+	    var opts = _opts || {};
+	    if (!opts.unknownFunction) {
+	        opts.unknownFunction = mixins.ONCE;
+	    }
+
+	    if (!opts.nonFunctionProperty) {
+	        opts.nonFunctionProperty = function (left, right, key) {
+	            if (left !== undefined && right !== undefined) {
+	                var getTypeName = function getTypeName(obj) {
+	                    if (obj && obj.constructor && obj.constructor.name) {
+	                        return obj.constructor.name;
+	                    } else {
+	                        return objToStr(obj).slice(8, -1);
+	                    }
+	                };
+	                throw new TypeError('Cannot mixin key ' + key + ' because it is provided by multiple sources, ' + 'and the types are ' + getTypeName(left) + ' and ' + getTypeName(right));
+	            }
+	            return left === undefined ? right : left;
+	        };
+	    }
+
+	    function setNonEnumerable(target, key, value) {
+	        if (key in target) {
+	            target[key] = value;
+	        } else {
+	            Object.defineProperty(target, key, {
+	                value: value,
+	                writable: true,
+	                configurable: true
+	            });
+	        }
+	    }
+
+	    return function applyMixin(source, mixin) {
+	        Object.keys(mixin).forEach(function (key) {
+	            var left = source[key],
+	                right = mixin[key],
+	                rule = rules[key];
+
+	            // this is just a weird case where the key was defined, but there's no value
+	            // behave like the key wasn't defined
+	            if (left === undefined && right === undefined) return;
+
+	            var wrapIfFunction = function wrapIfFunction(thing) {
+	                return typeof thing !== 'function' ? thing : function () {
+	                    return thing.call(this, arguments);
+	                };
+	            };
+
+	            // do we have a rule for this key?
+	            if (rule) {
+	                // may throw here
+	                var fn = rule(left, right, key);
+	                setNonEnumerable(source, key, wrapIfFunction(fn));
+	                return;
+	            }
+
+	            var leftIsFn = typeof left === 'function';
+	            var rightIsFn = typeof right === 'function';
+
+	            // check to see if they're some combination of functions or undefined
+	            // we already know there's no rule, so use the unknown function behavior
+	            if (leftIsFn && right === undefined || rightIsFn && left === undefined || leftIsFn && rightIsFn) {
+	                // may throw, the default is ONCE so if both are functions
+	                // the default is to throw
+	                setNonEnumerable(source, key, wrapIfFunction(opts.unknownFunction(left, right, key)));
+	                return;
+	            }
+
+	            // we have no rule for them, one may be a function but one or both aren't
+	            // our default is MANY_MERGED_LOOSE which will merge objects, concat arrays
+	            // and throw if there's a type mismatch or both are primitives (how do you merge 3, and "foo"?)
+	            source[key] = opts.nonFunctionProperty(left, right, key);
+	        });
+	    };
+	};
+
+	mixins._mergeObjects = function (obj1, obj2) {
+	    var assertObject = function assertObject(obj, obj2) {
+	        var type = objToStr(obj);
+	        if (type !== '[object Object]') {
+	            var displayType = obj.constructor ? obj.constructor.name : 'Unknown';
+	            var displayType2 = obj2.constructor ? obj2.constructor.name : 'Unknown';
+	            thrower('cannot merge returned value of type ' + displayType + ' with an ' + displayType2);
+	        }
+	    };
+
+	    if (Array.isArray(obj1) && Array.isArray(obj2)) {
+	        return obj1.concat(obj2);
+	    }
+
+	    assertObject(obj1, obj2);
+	    assertObject(obj2, obj1);
+
+	    var result = {};
+	    Object.keys(obj1).forEach(function (k) {
+	        if (Object.prototype.hasOwnProperty.call(obj2, k)) {
+	            thrower('cannot merge returns because both have the ' + JSON.stringify(k) + ' key');
+	        }
+	        result[k] = obj1[k];
+	    });
+
+	    Object.keys(obj2).forEach(function (k) {
+	        // we can skip the conflict check because all conflicts would already be found
+	        result[k] = obj2[k];
+	    });
+	    return result;
+	};
+
+	// define our built-in mixin types
+	mixins.ONCE = function (left, right, key) {
+	    if (left && right) {
+	        throw new TypeError('Cannot mixin ' + key + ' because it has a unique constraint.');
+	    }
+
+	    var fn = left || right;
+
+	    return function (args) {
+	        return fn.apply(this, args);
+	    };
+	};
+
+	mixins.MANY = function (left, right, key) {
+	    return function (args) {
+	        if (right) right.apply(this, args);
+	        return left ? left.apply(this, args) : undefined;
+	    };
+	};
+
+	mixins.MANY_MERGED_LOOSE = function (left, right, key) {
+	    if (left && right) {
+	        return mixins._mergeObjects(left, right);
+	    }
+
+	    return left || right;
+	};
+
+	mixins.MANY_MERGED = function (left, right, key) {
+	    return function (args) {
+	        var res1 = right && right.apply(this, args);
+	        var res2 = left && left.apply(this, args);
+	        if (res1 && res2) {
+	            return mixins._mergeObjects(res1, res2);
+	        }
+	        return res2 || res1;
+	    };
+	};
+
+	mixins.REDUCE_LEFT = function (_left, _right, key) {
+	    var left = _left || function (x) {
+	        return x;
+	    };
+	    var right = _right || function (x) {
+	        return x;
+	    };
+	    return function (args) {
+	        return right.call(this, left.apply(this, args));
+	    };
+	};
+
+	mixins.REDUCE_RIGHT = function (_left, _right, key) {
+	    var left = _left || function (x) {
+	        return x;
+	    };
+	    var right = _right || function (x) {
+	        return x;
+	    };
+	    return function (args) {
+	        return left.call(this, right.apply(this, args));
+	    };
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(229), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)(module)))
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
-	var isReactClassish = __webpack_require__(228),
-	    isReactElementish = __webpack_require__(229);
+	var isReactClassish = __webpack_require__(230),
+	    isReactElementish = __webpack_require__(231);
 
 	function makeExportsHot(m, React) {
 	  if (isReactElementish(m.exports, React)) {
@@ -28894,7 +29385,7 @@
 
 
 /***/ },
-/* 228 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	function hasRender(Class) {
@@ -28944,10 +29435,10 @@
 	module.exports = isReactClassish;
 
 /***/ },
-/* 229 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isReactClassish = __webpack_require__(228);
+	var isReactClassish = __webpack_require__(230);
 
 	function isReactElementish(obj, React) {
 	  if (!obj) {
@@ -28961,23 +29452,132 @@
 	module.exports = isReactElementish;
 
 /***/ },
-/* 230 */
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(217), RootInstanceProvider = __webpack_require__(215), ReactMount = __webpack_require__(125), React = __webpack_require__(59); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	function ToObject(val) {
+		if (val == null) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+
+		return Object(val);
+	}
+
+	module.exports = Object.assign || function (target, source) {
+		var from;
+		var keys;
+		var to = ToObject(target);
+
+		for (var s = 1; s < arguments.length; s++) {
+			from = arguments[s];
+			keys = Object.keys(Object(from));
+
+			for (var i = 0; i < keys.length; i++) {
+				to[keys[i]] = from[keys[i]];
+			}
+		}
+
+		return to;
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(229), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)(module)))
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(217), RootInstanceProvider = __webpack_require__(215), ReactMount = __webpack_require__(125), React = __webpack_require__(59); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	var slice = Array.prototype.slice,
+	    noop = function noop() {};
+
+	function word(str) {
+	  return str && str[0].toUpperCase() + str.slice(1);
+	}
+
+	function onName(name) {
+	  return 'on' + name.split(/[^a-zA-Z0-9]/).reduce(function (rst, w) {
+	    rst += word(w) || '';
+	    return rst;
+	  }, '');
+	}
+
+	module.exports = {
+	  on: function on(name, cb) {
+	    this._events = this._events || {};
+	    (this._events[name] = this._events[name] || []).push(cb || noop);
+	    return this;
+	  },
+	  off: function off(name, cb) {
+	    if (!this._events) return this;
+	    var queue, index;
+	    if (!(queue = this._events[name])) return this;
+	    if (typeof cb === 'function') (index = queue.indexOf(cb)) !== -1 && (queue[index] = noop);else this._events[name] = queue.map(function () {
+	      return noop;
+	    });
+	    return this;
+	  },
+	  once: function once(name, cb) {
+	    var _this = this,
+	        _arguments = arguments;
+
+	    var tmp = function tmp() {
+	      cb.apply(_this, slice.call(_arguments));
+	      _this.off(name, tmp);
+	    };
+	    this.on(name, tmp);
+	    return this;
+	  },
+	  fire: function fire(name) {
+	    var _this2 = this;
+
+	    if (!this._events) return this;
+	    var queue;
+	    if (!(queue = this._events[name])) return this;
+	    var data = slice.call(arguments, 1);
+	    queue.forEach(function (cb) {
+	      return cb.apply(_this2, data);
+	    });
+	    queue = this._events[name];
+	    (queue = queue.filter(function (cb) {
+	      return cb !== noop;
+	    })).length === 0 ? delete this._events[name] : this._events[name] = queue;
+	    return this;
+	  },
+	  fireAll: function fireAll() {
+	    var args = slice.call(arguments);
+	    var name = onName(args[0]);
+	    this.props[name] && this.props[name].apply(this, args.slice(1));
+	    return this.fire.apply(this, args);
+	  }
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(229), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(59))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(34)(module)))
+
+/***/ },
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(231);
+	var content = __webpack_require__(235);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(233)(content, {});
+	var update = __webpack_require__(237)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(231, function() {
-				var newContent = __webpack_require__(231);
+			module.hot.accept(235, function() {
+				var newContent = __webpack_require__(235);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -28987,14 +29587,14 @@
 	}
 
 /***/ },
-/* 231 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(232)();
-	exports.push([module.id, "", ""]);
+	exports = module.exports = __webpack_require__(236)();
+	exports.push([module.id, ".react-as-search-select {\n  overflow-y: auto;\n}\n.react-as-search-select input {\n  width: 100%;\n  color: #666;\n  font-size: 12px;\n  background-color: #fff;\n  box-shadow: inset 1px 1px 2px #ddd;\n  padding: 0 10px;\n  line-height: 30px;\n  border: 1px solid #a7a6aa;\n  box-sizing: border-box;\n  min-height: 30px;\n}\n.react-as-search-select .search-title {\n  text-align: center;\n  border: 1px solid #a7a6aa;\n  border-bottom: none;\n  line-height: 30px;\n}\n.react-as-search-select .search-list {\n  padding: 0;\n  margin: 0;\n  list-style: none;\n  line-height: 30px;\n  color: #666;\n  border-left: 1px solid #a7a6aa;\n  border-right: 1px solid #a7a6aa;\n}\n.react-as-search-select .search-list .search-item {\n  border-bottom: 1px solid #a7a6aa;\n  padding-left: 10px;\n  cursor: pointer;\n}\n.react-as-search-select .search-list .search-item:hover,\n.react-as-search-select .search-list .search-item.selected {\n  background-color: #a7a6aa;\n  color: #fff;\n}\n.react-as-search-select .search-list .search-item .search-item-index {\n  display: inline-block;\n  vertical-align: middle;\n  height: 20px;\n  padding: 0 5px;\n  min-width: 10px;\n  background-color: #666;\n  color: #fff;\n  margin-right: 10px;\n  line-height: 20px;\n  text-align: center;\n}\n.react-as-search-select .search-list .search-item .search-item-index.empty {\n  background: none;\n}\n", ""]);
 
 /***/ },
-/* 232 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -29050,7 +29650,7 @@
 
 
 /***/ },
-/* 233 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
